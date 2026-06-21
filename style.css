@@ -1568,7 +1568,7 @@ html[data-theme="dark"] .ticker-item {
     font-weight: 600;
     box-shadow: 0 10px 25px rgba(18, 18, 18, 0.15);
     z-index: 1000;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, background-color 0.3s ease;
     opacity: 0;
     pointer-events: none;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1577,6 +1577,16 @@ html[data-theme="dark"] .ticker-item {
 .toast-box.show {
     transform: translate(-50%, 0);
     opacity: 1;
+}
+
+.toast-box.success {
+    background-color: #2e7d32;
+    color: #ffffff;
+}
+
+.toast-box.error {
+    background-color: #c62828;
+    color: #ffffff;
 }
 
 /* ==========================================================================
