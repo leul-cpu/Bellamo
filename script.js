@@ -147,16 +147,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const showToast = (message) => {
+    const showToast = (message, type = '') => {
         if (!toast) return;
         toast.textContent = message;
+
+        // Reset classes and add the correct type
+        toast.className = 'toast-box';
+        if (type) toast.classList.add(type);
+
         toast.classList.add('show');
         toast.setAttribute('aria-hidden', 'false');
 
         setTimeout(() => {
             toast.classList.remove('show');
             toast.setAttribute('aria-hidden', 'true');
-        }, 2500);
+        }, 3500);
     };
 
     // ---------------------------------------------------------
@@ -184,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---------------------------------------------------------
-    // 6. Interactive Contact Form Handler (Simulated Submit)
+    // 6. Interactive Contact Form Handler (EmailJS Integration)
     // ---------------------------------------------------------
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
@@ -208,26 +213,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.head.appendChild(styleSheet);
             }
 
-            // Simulate server network latency (1.5 seconds)
-            setTimeout(() => {
-                // Reset form inputs
-                contactForm.reset();
-                
-                // Show success response
-                formFeedback.textContent = "Thank you! Your message has been sent successfully. We'll get back to you shortly.";
-                formFeedback.className = "form-feedback-message success";
-                
-                // Restore button state
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalButtonContent;
+            // EmailJS credentials
+            const serviceID = 'service_i78f1sw';
+            const templateID = 'template_ch3r3vj';
 
-                // Clear success message after 5 seconds
-                setTimeout(() => {
-                    formFeedback.textContent = "";
-                    formFeedback.className = "form-feedback-message";
-                }, 6000);
+            // Send form using EmailJS
+            emailjs.sendForm(serviceID, templateID, contactForm)
+                .then(() => {
+                    // Reset form inputs
+                    contactForm.reset();
 
-            }, 1500);
+                    // Show success feedback via Toast Notification
+                    showToast("Message sent successfully! We will contact you shortly.", "success");
+
+                    // Also show a subtle inline message
+                    formFeedback.textContent = "Thank you! Your message has been received.";
+                    formFeedback.className = "form-feedback-message success";
+
+                    // Restore button state
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalButtonContent;
+
+                    // Clear inline success message after 6 seconds
+                    setTimeout(() => {
+                        formFeedback.textContent = "";
+                        formFeedback.className = "form-feedback-message";
+                    }, 6000);
+
+                }, (err) => {
+                    // Restore button state
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalButtonContent;
+
+                    // Show error feedback
+                    showToast("Failed to send message. Please try again.", "error");
+                    formFeedback.textContent = "Error sending message. Please try again.";
+                    formFeedback.className = "form-feedback-message error";
+                    console.error('EmailJS Error:', err);
+                });
         });
     }
 
