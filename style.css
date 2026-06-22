@@ -1133,20 +1133,21 @@ body.no-scroll {
 }
 
 .vault-card {
-    background: rgba(15, 23, 42, 0.4);
+    background: var(--clr-glass-surface);
     border-radius: var(--border-radius-md);
-    border: 1px solid rgba(220, 38, 38, 0.2); /* Crimson border */
+    border: 1px solid var(--clr-glass-border);
     overflow: hidden;
     position: relative;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
     transition: var(--transition-smooth);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+    box-shadow: 0 10px 30px rgba(18, 18, 18, 0.02);
 }
 
 .vault-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(220, 38, 38, 0.5);
-    box-shadow: 0 20px 40px rgba(220, 38, 38, 0.15), 0 0 20px rgba(220, 38, 38, 0.1);
+    border-color: var(--clr-gold-border-hover);
+    box-shadow: 0 20px 40px rgba(217, 164, 65, 0.15), 0 0 20px rgba(217, 164, 65, 0.05);
 }
 
 .vault-badge {
@@ -1154,8 +1155,9 @@ body.no-scroll {
     top: 1.2rem;
     left: 1.2rem;
     z-index: 10;
-    background: rgba(220, 38, 38, 0.9); /* Crimson badge */
-    color: #ffffff;
+    background: var(--clr-ink);
+    color: var(--clr-gold-primary);
+    border: 1px solid var(--clr-gold-border);
     padding: 0.4rem 0.8rem;
     border-radius: 30px;
     font-size: 0.75rem;
@@ -1165,9 +1167,8 @@ body.no-scroll {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .vault-video-wrapper {
@@ -1175,7 +1176,7 @@ body.no-scroll {
     width: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio padding hack matching Moh exactly */
     background: #000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--clr-glass-border);
 }
 
 .main-video {
@@ -1193,18 +1194,18 @@ body.no-scroll {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    background: rgba(15, 23, 42, 0.5); /* dark card bottom to match Moh */
+    background: transparent; /* No blue-slate background */
 }
 
 .vault-card h4 {
     font-family: var(--font-serif);
     font-size: 1.35rem;
-    color: #ffffff; /* always light in dark vault */
+    color: var(--clr-ink);
 }
 
 .vault-card p {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7); /* always light in dark vault */
+    color: var(--clr-ink-muted);
 }
 
 /* ==========================================================================
