@@ -294,4 +294,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ---------------------------------------------------------
+    // 8. Portfolio Showcase Filter
+    // ---------------------------------------------------------
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            portfolioCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filterValue === 'all' || category === filterValue) {
+                    card.classList.remove('hidden');
+                    // Ensure fade-in animations trigger
+                    card.classList.add('animated');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    // ---------------------------------------------------------
+    // 9. Video Vault Fullscreen Orientation Lock
+    // ---------------------------------------------------------
+    const vaultVideos = document.querySelectorAll('.main-video');
+
+    vaultVideos.forEach(video => {
+        video.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+                // Adjust screen orientation lock based on video dimensions
+                if (video.videoWidth > video.videoHeight) {
+                    if (screen.orientation && screen.orientation.lock) {
+                        screen.orientation.lock('landscape').catch(() => { });
+                    }
+                } else {
+                    if (screen.orientation && screen.orientation.lock) {
+                        screen.orientation.lock('portrait').catch(() => { });
+                    }
+                }
+            } else {
+                // Unlock screen orientation when leaving fullscreen
+                if (screen.orientation && screen.orientation.unlock) {
+                    screen.orientation.unlock();
+                }
+            }
+        });
+    });
+
 });
