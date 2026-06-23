@@ -167,6 +167,34 @@ p.paragraph-lead {
     display: inline-block;
 }
 
+.hero-brand-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3.8rem, 11vw, 8.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.hero-brand-bella {
+    color: var(--clr-ink);
+}
+
+.hero-brand-mo {
+    background: linear-gradient(135deg, var(--clr-gold-dark) 0%, #D9A441 50%, var(--clr-gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.nav-wordmark-gold,
+.footer-wordmark-gold {
+    color: var(--clr-gold-primary);
+}
+
 /* Page Dividers */
 .border-divider {
     border-bottom: 1px solid rgba(18, 18, 18, 0.05);
