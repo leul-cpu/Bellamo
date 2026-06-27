@@ -19,7 +19,9 @@ def run():
         
         # Moh thumbnails
         (r"c:\Users\leula\OneDrive\Desktop\WORK\Moh\assets\thumbnails\thumb_ZSmYVbfnR.jpg", "thumb_ZSmYVbfnR.jpg"),
-        (r"c:\Users\leula\OneDrive\Desktop\WORK\Moh\assets\thumbnails\thumb_ZSmYVG9yv.jpg", "thumb_ZSmYVG9yv.jpg")
+        (r"c:\Users\leula\OneDrive\Desktop\WORK\Moh\assets\thumbnails\thumb_ZSmYVG9yv.jpg", "thumb_ZSmYVG9yv.jpg"),
+        (r"c:\Users\leula\OneDrive\Desktop\WORK\Moh\assets\thumbnails\thumb_ZSCks3jRY.jpg", "thumb_ZSCks3jRY.jpg"),
+
     ]
     
     for src, dest_name in copies:
