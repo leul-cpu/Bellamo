@@ -993,8 +993,8 @@ body.no-scroll {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem 1.8rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem 1.5rem;
     padding-bottom: 40px;
     transition: var(--transition-smooth);
 }
@@ -1014,8 +1014,8 @@ body.no-scroll {
 .card-media {
     position: relative;
     width: 100%;
-    height: 380px;
-    /* Small, refined vertical thumbnail height */
+    height: 220px;
+    /* Reduced vertical thumbnail height */
     overflow: hidden;
     border-bottom: 1px solid var(--clr-glass-border);
     background-color: rgba(18, 18, 18, 0.03);
@@ -1072,11 +1072,11 @@ body.no-scroll {
 }
 
 .portfolio-card .card-content {
-    padding: 1.8rem;
+    padding: 1.2rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: 0.8rem;
+    gap: 0.6rem;
 }
 
 .portfolio-card h4 {
@@ -2019,6 +2019,7 @@ html[data-theme="dark"] .skeleton-box {
         gap: 2rem;
     }
 
+    .portfolio-grid,
     .portfolio-skeleton-grid {
         grid-template-columns: repeat(2, 1fr);
     }
