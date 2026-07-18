@@ -222,8 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // EmailJS credentials
-            const serviceID = 'service_i78f1sw';
-            const templateID = 'template_ch3r3vj';
+          const serviceID = 'service_9pjq4op';
+          const templateID = 'template_7bus5mb';
 
             // Send form using EmailJS
             emailjs.sendForm(serviceID, templateID, contactForm)
