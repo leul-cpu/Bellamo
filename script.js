@@ -2,6 +2,14 @@
    Bellamo Portfolio - Interactive Core Script
    ========================================================================== */
 
+window.addEventListener('load', () => {
+    const loader = document.getElementById('skeleton-loader');
+    if (loader) {
+        loader.classList.add('fade-out');
+        setTimeout(() => loader.style.display = 'none', 500);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // ---------------------------------------------------------
@@ -276,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Read stored theme or system preference
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    const initialTheme = savedTheme || 'dark';
     setTheme(initialTheme);
 
     // Click Handlers

@@ -1874,6 +1874,110 @@ html[data-theme="dark"] .ticker-item {
 }
 
 /* ==========================================================================
+   Skeleton Loader
+   ========================================================================== */
+.skeleton-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F7F5F1;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+html[data-theme="dark"] .skeleton-loader {
+    background-color: #0a0c10;
+}
+.skeleton-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Skeleton Building Blocks */
+.skeleton-box {
+    background: linear-gradient(90deg, rgba(0,0,0,0.05) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 8px;
+}
+html[data-theme="dark"] .skeleton-box {
+    background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+    background-size: 200% 100%;
+}
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Skeleton Layout Structure */
+.skeleton-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    height: 80px;
+    width: 100%;
+}
+.skeleton-nav-logo {
+    width: 150px;
+    height: 40px;
+}
+.skeleton-nav-links {
+    display: flex;
+    gap: 2rem;
+}
+.skeleton-nav-link {
+    width: 80px;
+    height: 20px;
+}
+@media (max-width: 992px) {
+    .skeleton-nav-links { display: none; }
+}
+
+.skeleton-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vh;
+    padding: 0 5%;
+}
+.skeleton-title-large {
+    width: 60%;
+    max-width: 500px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+}
+.skeleton-subtitle-large {
+    width: 80%;
+    max-width: 600px;
+    height: 24px;
+    margin-bottom: 4rem;
+}
+
+.skeleton-cards {
+    display: flex;
+    gap: 2rem;
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+.skeleton-card-large {
+    flex: 1;
+    height: 350px;
+    border-radius: 20px;
+}
+@media (max-width: 992px) {
+    .skeleton-cards { flex-direction: column; }
+    .skeleton-title-large { height: 45px; }
+}
+
+/* ==========================================================================
    Responsive Breakpoints
    ========================================================================== */
 
