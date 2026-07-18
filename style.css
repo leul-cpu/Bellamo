@@ -1090,6 +1090,10 @@ body.no-scroll {
     line-height: 1.6;
     color: var(--clr-ink-muted);
     flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .category-tag {
