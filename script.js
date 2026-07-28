@@ -39,31 +39,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---------------------------------------------------------
-    // 2. Mobile Menu Toggle
+    // 2. Mobile Menu Dropdown Card Toggle
     // ---------------------------------------------------------
     if (hamburger && mobileNav) {
-        hamburger.addEventListener('click', () => {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
             const isOpened = mobileNav.classList.toggle('active');
             hamburger.setAttribute('aria-expanded', isOpened);
-            document.body.classList.toggle('no-scroll', isOpened);
 
             if (isOpened) {
-                // Change hamburger icon to X (Close)
                 hamburgerIcon.className = 'ph ph-x';
             } else {
-                // Change hamburger icon back to List (Open)
                 hamburgerIcon.className = 'ph ph-list';
             }
         });
 
-        // Close mobile nav when link is clicked
+        // Close mobile nav when link is clicked and smooth scroll to section
         mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href');
                 mobileNav.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', false);
-                document.body.classList.remove('no-scroll');
+                hamburger.setAttribute('aria-expanded', 'false');
                 hamburgerIcon.className = 'ph ph-list';
+
+                if (targetId && targetId.startsWith('#')) {
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        targetEl.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
             });
+        });
+
+        // Close dropdown when tapping/clicking anywhere outside
+        document.addEventListener('click', (e) => {
+            if (mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && !hamburger.contains(e.target)) {
+                mobileNav.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburgerIcon.className = 'ph ph-list';
+            }
         });
     }
 
@@ -269,25 +284,25 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
         
-        // Update toggle icons
+        // Update toggle icons & labels
         const iconClass = theme === 'dark' ? 'ph ph-sun' : 'ph ph-moon';
         if (themeToggle) {
             const toggleIcon = themeToggle.querySelector('i');
             if (toggleIcon) toggleIcon.className = iconClass;
+            themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
         }
         if (themeToggleMobile) {
-            const toggleMobileIcon = themeToggleMobile.querySelector('i');
-            if (toggleMobileIcon) toggleMobileIcon.className = iconClass;
+            themeToggleMobile.innerHTML = `<i class="${iconClass}" aria-hidden="true"></i> ${theme === 'dark' ? 'Light Mode' : 'Dark Mode'}`;
+            themeToggleMobile.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
         }
     };
 
     // Read stored theme or system preference
     const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme = savedTheme || 'dark';
     setTheme(initialTheme);
 
-    // Click Handlers
+    // Click Handlers for Theme Toggle Buttons
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
@@ -303,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---------------------------------------------------------
-    // 8. Portfolio Showcase Filter
+    // 8. Portfolio Showcase Filter & Clickable Card Thumbnails
     // ---------------------------------------------------------
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioCards = document.querySelectorAll('.portfolio-card');
@@ -321,13 +336,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const category = card.getAttribute('data-category');
                 if (filterValue === 'all' || category === filterValue) {
                     card.classList.remove('hidden');
-                    // Ensure fade-in animations trigger
                     card.classList.add('animated');
                 } else {
                     card.classList.add('hidden');
                 }
             });
         });
+    });
+
+    // Make entire video thumbnail / play button clickable on mobile and desktop
+    portfolioCards.forEach(card => {
+        const watchLink = card.querySelector('.watch-link');
+        const media = card.querySelector('.card-media');
+        if (watchLink && media) {
+            media.style.cursor = 'pointer';
+            media.addEventListener('click', (e) => {
+                if (e.target.closest('.watch-link')) return;
+                window.open(watchLink.href, '_blank', 'noopener,noreferrer');
+            });
+        }
     });
 
     // ---------------------------------------------------------
