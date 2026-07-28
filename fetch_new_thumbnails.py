@@ -10,6 +10,10 @@ videos = [
     {
         'url': 'https://vt.tiktok.com/ZSXuD4ntF/',
         'dest_path': r'c:\Users\leula\OneDrive\Desktop\WORK\Bellamo\assets\thumbnails\thumb_ZSXuD4ntF.jpg'
+    },
+    {
+        'url': 'https://vt.tiktok.com/ZS4RHkKR3/',
+        'dest_path': r'c:\Users\leula\OneDrive\Desktop\WORK\Bellamo\assets\thumbnails\thumb_ZS4RHkKR3.jpg'
     }
 ]
 
