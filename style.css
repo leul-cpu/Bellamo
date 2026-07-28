@@ -27,8 +27,10 @@
     --clr-ticker-bg: rgba(18, 18, 18, 0.02);
 
     /* Navbar specific theme colors */
-    --clr-nav-bg: rgba(247, 245, 241, 0.92);
-    --clr-nav-border: rgba(18, 18, 18, 0.04);
+    --clr-nav-bg: rgba(18, 16, 11, 0.82);
+    --clr-nav-border: rgba(217, 164, 65, 0.22);
+    --clr-nav-text: var(--clr-ink-muted);
+    --clr-nav-text-active: var(--clr-ink);
 
     /* Logo adjustments */
     --logo-filter: none;
@@ -64,8 +66,10 @@
     --clr-gold-border-hover: rgba(217, 164, 65, 0.7);
     --clr-ticker-bg: rgba(255, 255, 255, 0.02);
 
-    --clr-nav-bg: rgba(10, 9, 7, 0.96);
-    --clr-nav-border: rgba(217, 164, 65, 0.12);
+    --clr-nav-bg: rgba(8, 7, 5, 0.85);
+    --clr-nav-border: rgba(217, 164, 65, 0.25);
+    --clr-nav-text: rgba(240, 235, 220, 0.72);
+    --clr-nav-text-active: #F7F5F1;
 
     /* In dark mode, we invert the logo to turn black text white and the white background black.
        We use hue-rotate to bring the gold back to its original tone. */
@@ -325,7 +329,7 @@ p.paragraph-lead {
 }
 
 /* ==========================================================================
-   Navbar Style
+   Navbar Style — Floating Pill Capsule
    ========================================================================== */
 .navbar {
     position: fixed;
@@ -333,161 +337,192 @@ p.paragraph-lead {
     left: 0;
     width: 100%;
     z-index: 100;
-    padding: 1.8rem 0;
-    transition: var(--transition-smooth);
-}
-
-.navbar.scrolled {
     padding: 1rem 0;
-    background-color: var(--clr-nav-bg);
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border-bottom: 1px solid var(--clr-nav-border);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    background: transparent;
+    transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
 }
 
-/* Always show a subtle glass effect even before scrolling in dark mode */
-[data-theme="dark"] .navbar {
-    background-color: rgba(10, 9, 7, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-[data-theme="dark"] .navbar.scrolled {
-    background-color: rgba(10, 9, 7, 0.97);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-}
-
+/* The actual pill container */
 .nav-container {
+    pointer-events: all;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
-    max-width: var(--container-width);
-    margin: 0 auto;
+    width: 92%;
+    max-width: 1120px;
+    margin: 0.75rem auto 0;
+    padding: 0.55rem 0.6rem 0.55rem 1.1rem;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    box-shadow: none;
+    transition: background 0.5s ease, backdrop-filter 0.5s ease,
+                border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
+.navbar.scrolled .nav-container {
+    background: rgba(18, 16, 11, 0.35);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-color: rgba(217, 164, 65, 0.15);
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.15);
+}
+
+/* Brand */
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
-.nav-logo {
-    height: clamp(32px, 4vw, 40px);
-    width: auto;
-    object-fit: contain;
+/* Logo avatar circle */
+.nav-logo-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--clr-gold-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     filter: var(--logo-filter);
-    mix-blend-mode: var(--logo-blend);
-    transition: filter 0.4s ease, mix-blend-mode 0.4s ease, transform 0.3s ease;
 }
 
-.nav-brand:hover .nav-logo {
-    transform: scale(1.05) rotate(-2deg);
+.nav-brand:hover .nav-logo-circle {
+    transform: scale(1.08) rotate(-4deg);
 }
 
 .nav-wordmark {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
     font-weight: 700;
-    color: var(--clr-ink);
-    letter-spacing: -0.02em;
+    color: var(--clr-nav-text-active);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     transition: color var(--transition-smooth);
 }
 
+/* Nav links group */
 .nav-links {
     display: flex;
-    gap: 2.2rem;
+    gap: 0.25rem;
     align-items: center;
 }
 
 .nav-link {
     text-decoration: none;
-    color: var(--clr-ink-muted);
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: var(--transition-fast);
+    color: var(--clr-nav-text);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.25s ease, background 0.25s ease;
     position: relative;
-    padding: 0.2rem 0;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+    color: var(--clr-nav-text-active);
+    background: rgba(255, 255, 255, 0.07);
+}
+
 .nav-link.active {
     color: var(--clr-ink);
+    background: var(--clr-gold-primary);
+    box-shadow: 0 2px 12px rgba(217, 164, 65, 0.35);
 }
 
+/* Remove old underline pseudo-element */
 .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1.5px;
-    background: linear-gradient(90deg, var(--clr-gold-primary), var(--clr-gold-light));
-    transition: var(--transition-smooth);
-    border-radius: 2px;
+    display: none;
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
-}
-
+/* CTA Button — gold pill */
 .btn-nav-cta {
-    padding: 0.6rem 1.6rem;
-    font-size: 0.85rem;
-}
-
-/* Dark mode CTA button override */
-[data-theme="dark"] .btn-primary {
-    background-color: var(--clr-gold-primary);
+    padding: 0.5rem 1.35rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    background: var(--clr-gold-primary);
     color: #0D0C0A;
-    box-shadow: 0 4px 15px rgba(217, 164, 65, 0.2);
+    border: none;
+    box-shadow: 0 2px 14px rgba(217, 164, 65, 0.4);
+    transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    flex-shrink: 0;
 }
 
-[data-theme="dark"] .btn-primary:hover {
-    background-color: var(--clr-gold-light);
+.btn-nav-cta:hover {
+    background: var(--clr-gold-light);
+    box-shadow: 0 4px 20px rgba(217, 164, 65, 0.55);
+    transform: translateY(-1px);
     color: #0D0C0A;
-    box-shadow: 0 6px 22px rgba(217, 164, 65, 0.35);
 }
 
-[data-theme="dark"] .btn-secondary {
-    border-color: rgba(247, 245, 241, 0.3);
-    color: var(--clr-ink);
+/* Right-side action group — keeps theme toggle + hamburger together */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
 }
 
-[data-theme="dark"] .btn-secondary:hover {
-    border-color: var(--clr-gold-primary);
-    color: var(--clr-gold-light);
+/* Override global btn-primary inside nav */
+.navbar .btn-primary {
+    background: var(--clr-gold-primary);
+    color: #0D0C0A;
+    box-shadow: 0 2px 14px rgba(217, 164, 65, 0.4);
 }
 
+.navbar .btn-primary:hover {
+    background: var(--clr-gold-light);
+    color: #0D0C0A;
+    box-shadow: 0 4px 20px rgba(217, 164, 65, 0.55);
+}
+
+/* Theme Toggle Button */
 .theme-toggle-btn {
-    background: none;
-    border: 1px solid transparent;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
     cursor: pointer;
-    font-size: 1.3rem;
-    color: var(--clr-ink);
+    font-size: 1.05rem;
+    color: var(--clr-nav-text);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem;
+    padding: 0;
     border-radius: 50%;
-    transition: var(--transition-fast);
-    margin-right: 0.5rem;
-    width: 36px;
-    height: 36px;
+    transition: background 0.25s ease, color 0.25s ease;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
 }
 
 .theme-toggle-btn:hover {
-    color: var(--clr-gold-primary);
-    background-color: rgba(18, 18, 18, 0.05);
-    border-color: rgba(18, 18, 18, 0.08);
+    color: var(--clr-gold-light);
+    background: rgba(217, 164, 65, 0.12);
+    border-color: rgba(217, 164, 65, 0.3);
 }
 
 [data-theme="dark"] .theme-toggle-btn:hover {
-    background-color: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(217, 164, 65, 0.12);
+    border-color: rgba(217, 164, 65, 0.3);
 }
 
 .hamburger {
@@ -495,10 +530,10 @@ p.paragraph-lead {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.8rem;
-    color: var(--clr-ink);
+    font-size: 1.6rem;
+    color: var(--clr-nav-text-active);
     z-index: 110;
-    transition: transform var(--transition-fast);
+    transition: transform var(--transition-fast), color 0.25s ease;
 }
 
 .hamburger:hover {
