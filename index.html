@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -34,6 +34,14 @@
     <script type="text/javascript">
         (function () {
             emailjs.init("908ARPC--bLL0_hxk"); // Public Key
+        })();
+    </script>
+
+    <!-- Theme: apply before CSS renders to prevent flash of light theme -->
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', t);
         })();
     </script>
 
@@ -87,8 +95,8 @@
             </div>
             <a href="#contact" class="btn-primary btn-nav-cta">Let's Talk</a>
             <div class="nav-actions">
-                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle visual theme">
-                    <i class="ph ph-moon" aria-hidden="true"></i>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Switch to light mode">
+                    <i class="ph ph-sun" aria-hidden="true"></i>
                 </button>
                 <button class="hamburger" id="hamburger-menu" aria-label="Toggle mobile menu" aria-expanded="false"
                     aria-controls="mobile-nav">
@@ -103,8 +111,8 @@
                 <a href="#services" class="mobile-nav-link"><i class="ph ph-sparkles" aria-hidden="true"></i> Services</a>
                 <a href="#portfolio" class="mobile-nav-link"><i class="ph ph-film-strip" aria-hidden="true"></i> Portfolio</a>
                 <a href="#contact" class="mobile-nav-link"><i class="ph ph-envelope-simple" aria-hidden="true"></i> Contact</a>
-                <button id="theme-toggle-mobile" class="theme-toggle-btn-mobile" aria-label="Toggle visual theme">
-                    <i class="ph ph-moon" aria-hidden="true"></i> Toggle Theme
+                <button id="theme-toggle-mobile" class="theme-toggle-btn-mobile" aria-label="Switch to light mode">
+                    <i class="ph ph-sun" aria-hidden="true"></i> Light Mode
                 </button>
                 <a href="#contact" class="btn-primary mobile-cta-btn">Let's Talk <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
             </div>
