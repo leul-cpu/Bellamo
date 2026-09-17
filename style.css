@@ -203,13 +203,43 @@ p.paragraph-lead {
 
 .hero-tagline {
     font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 2.6vw, 1.65rem);
+    font-weight: 400;
+    color: var(--clr-ink);
+    max-width: 780px;
+    margin: 1.25rem auto 0;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-wrap: balance;
+}
+
+[data-theme="dark"] .hero-tagline {
+    color: #F2EFE9;
+}
+
+.tagline-main {
+    display: inline;
+}
+
+.hero-tagline-accent {
+    display: inline;
     font-style: italic;
-    font-size: clamp(1rem, 2vw, 1.35rem);
-    color: var(--clr-ink-muted);
-    max-width: 600px;
-    margin: 1rem auto 0;
-    letter-spacing: 0.02em;
-    line-height: 1.6;
+    font-weight: 500;
+    color: var(--clr-gold-light);
+    text-shadow: 0 0 24px rgba(217, 164, 65, 0.35);
+}
+
+[data-theme="light"] .hero-tagline-accent {
+    color: var(--clr-gold-dark);
+    text-shadow: none;
+}
+
+@media screen and (min-width: 640px) {
+    .hero-tagline-accent {
+        display: block;
+        margin-top: 0.25rem;
+    }
 }
 
 .nav-wordmark-gold,
@@ -2336,3 +2366,190 @@ html[data-theme="dark"] .skeleton-box {
         left: 0.8rem;
     }
 }
+
+/* ==========================================================================
+   Highlight Stat Card (Videos & Reels Edited)
+   ========================================================================== */
+.highlight-stat-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 3.5rem;
+    width: 100%;
+}
+
+.highlight-stat-card {
+    position: relative;
+    overflow: hidden;
+    background: rgba(26, 24, 20, 0.72);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--clr-gold-border);
+    border-radius: 18px;
+    padding: 26px 40px;
+    min-width: 290px;
+    max-width: 440px;
+    width: 100%;
+    box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.4s ease, 
+                box-shadow 0.4s ease;
+    text-align: left;
+    animation: statCardGlowPulse 5s ease-in-out infinite;
+}
+
+/* Diagonal sweeping luxury light shimmer */
+.highlight-stat-card::after {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -120%;
+    width: 70%;
+    height: 220%;
+    background: linear-gradient(
+        110deg,
+        transparent 25%,
+        rgba(217, 164, 65, 0.08) 42%,
+        rgba(242, 193, 78, 0.22) 50%,
+        rgba(217, 164, 65, 0.08) 58%,
+        transparent 75%
+    );
+    transform: rotate(25deg);
+    animation: statSweepShimmer 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    pointer-events: none;
+}
+
+@keyframes statSweepShimmer {
+    0% {
+        left: -120%;
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    35% {
+        left: 140%;
+        opacity: 1;
+    }
+    36%, 100% {
+        left: 140%;
+        opacity: 0;
+    }
+}
+
+/* Breathing gold aura animation */
+@keyframes statCardGlowPulse {
+    0%, 100% {
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--clr-gold-border);
+    }
+    50% {
+        box-shadow: 0 16px 45px rgba(217, 164, 65, 0.2), 0 0 24px rgba(217, 164, 65, 0.22), 0 0 0 1px rgba(217, 164, 65, 0.65);
+    }
+}
+
+.highlight-stat-card:hover {
+    transform: translateY(-5px) scale(1.015);
+    border-color: var(--clr-gold-primary);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 28px rgba(217, 164, 65, 0.28),
+        inset 0 1px 0 rgba(255, 230, 140, 0.15);
+}
+
+.stat-highlight-number {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(2.6rem, 5.5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--clr-ink);
+    font-family: var(--font-sans);
+    display: inline-flex;
+    align-items: baseline;
+}
+
+.stat-plus-accent {
+    color: var(--clr-gold-primary);
+    margin-left: 2px;
+    font-weight: 700;
+    text-shadow: 0 0 14px rgba(217, 164, 65, 0.4);
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.highlight-stat-card:hover .stat-plus-accent {
+    transform: scale(1.15) rotate(5deg);
+    color: var(--clr-gold-light);
+}
+
+.stat-highlight-line {
+    position: relative;
+    z-index: 2;
+    width: 42px;
+    height: 3.5px;
+    background: linear-gradient(90deg, var(--clr-gold-primary), var(--clr-gold-light));
+    border-radius: 99px;
+    margin: 14px 0 14px 0;
+    box-shadow: 0 0 10px rgba(217, 164, 65, 0.5);
+    animation: statLinePulse 4s ease-in-out infinite;
+}
+
+@keyframes statLinePulse {
+    0%, 100% {
+        width: 40px;
+        box-shadow: 0 0 8px rgba(217, 164, 65, 0.4);
+    }
+    50% {
+        width: 56px;
+        box-shadow: 0 0 16px rgba(242, 193, 78, 0.75), 0 0 6px rgba(217, 164, 65, 0.9);
+    }
+}
+
+.stat-highlight-label {
+    position: relative;
+    z-index: 2;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--clr-ink-muted);
+    font-family: var(--font-sans);
+    transition: color 0.3s ease;
+}
+
+.highlight-stat-card:hover .stat-highlight-label {
+    color: var(--clr-gold-light);
+}
+
+/* Light theme adjustments */
+[data-theme="light"] .highlight-stat-card {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(217, 164, 65, 0.3);
+    box-shadow: 
+        0 12px 35px rgba(217, 164, 65, 0.08),
+        0 4px 12px rgba(18, 18, 18, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    animation: statCardGlowPulseLight 5s ease-in-out infinite;
+}
+
+@keyframes statCardGlowPulseLight {
+    0%, 100% {
+        box-shadow: 0 12px 35px rgba(217, 164, 65, 0.08), 0 0 0 1px rgba(217, 164, 65, 0.25);
+    }
+    50% {
+        box-shadow: 0 16px 42px rgba(217, 164, 65, 0.18), 0 0 20px rgba(217, 164, 65, 0.2), 0 0 0 1px rgba(217, 164, 65, 0.55);
+    }
+}
+
+[data-theme="light"] .highlight-stat-card:hover {
+    border-color: var(--clr-gold-primary);
+    box-shadow: 
+        0 18px 45px rgba(217, 164, 65, 0.22),
+        0 6px 16px rgba(18, 18, 18, 0.05);
+}
+
+[data-theme="light"] .highlight-stat-card:hover .stat-highlight-label {
+    color: var(--clr-gold-dark);
+}

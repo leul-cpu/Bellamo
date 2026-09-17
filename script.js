@@ -384,4 +384,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ---------------------------------------------------------
+    // 10. Highlight Stat Card Animated Counter
+    // ---------------------------------------------------------
+    const highlightStatNumber = document.querySelector('.stat-highlight-number[data-target]');
+    if (highlightStatNumber) {
+        const targetNumber = parseInt(highlightStatNumber.getAttribute('data-target'), 10) || 1000;
+        let animated = false;
+
+        const countUp = () => {
+            if (animated) return;
+            animated = true;
+            const duration = 1600; // ms
+            const startTime = performance.now();
+
+            const updateCount = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out expo for a smooth luxury landing
+                const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                const currentVal = Math.floor(easeOut * targetNumber);
+
+                highlightStatNumber.innerHTML = `${currentVal}<span class="stat-plus-accent">+</span>`;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCount);
+                } else {
+                    highlightStatNumber.innerHTML = `${targetNumber}<span class="stat-plus-accent">+</span>`;
+                }
+            };
+
+            requestAnimationFrame(updateCount);
+        };
+
+        if ('IntersectionObserver' in window) {
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        countUp();
+                        statObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            statObserver.observe(highlightStatNumber);
+        } else {
+            countUp();
+        }
+    }
+
 });
