@@ -278,43 +278,76 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---------------------------------------------------------
-    // 7. Visual Theme Toggle (Night Mode)
+    // 7. Visual Theme Toggle (Night / Light Mode)
     // ---------------------------------------------------------
-    const setTheme = (theme) => {
+    let isThemeTransitioning = false;
+
+    const setTheme = (theme, animate = false) => {
+        if (animate) {
+            document.documentElement.classList.add('theme-transitioning');
+            if (themeToggle) themeToggle.classList.add('toggling');
+            if (themeToggleMobile) themeToggleMobile.classList.add('toggling');
+        }
+
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
         
-        // Update toggle icons & labels
         const iconClass = theme === 'dark' ? 'ph ph-sun' : 'ph ph-moon';
-        if (themeToggle) {
-            const toggleIcon = themeToggle.querySelector('i');
-            if (toggleIcon) toggleIcon.className = iconClass;
-            themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-        }
-        if (themeToggleMobile) {
-            themeToggleMobile.innerHTML = `<i class="${iconClass}" aria-hidden="true"></i> ${theme === 'dark' ? 'Light Mode' : 'Dark Mode'}`;
-            themeToggleMobile.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+
+        if (animate) {
+            // Halfway through rotation, swap the icon class
+            setTimeout(() => {
+                if (themeToggle) {
+                    const toggleIcon = themeToggle.querySelector('i');
+                    if (toggleIcon) toggleIcon.className = iconClass;
+                    themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+                }
+                if (themeToggleMobile) {
+                    themeToggleMobile.innerHTML = `<i class="${iconClass}" aria-hidden="true"></i> ${theme === 'dark' ? 'Light Mode' : 'Dark Mode'}`;
+                    themeToggleMobile.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+                }
+            }, 180);
+
+            // Clear transitioning classes after animation completes
+            setTimeout(() => {
+                document.documentElement.classList.remove('theme-transitioning');
+                if (themeToggle) themeToggle.classList.remove('toggling');
+                if (themeToggleMobile) themeToggleMobile.classList.remove('toggling');
+                isThemeTransitioning = false;
+            }, 520);
+        } else {
+            if (themeToggle) {
+                const toggleIcon = themeToggle.querySelector('i');
+                if (toggleIcon) toggleIcon.className = iconClass;
+                themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+            }
+            if (themeToggleMobile) {
+                themeToggleMobile.innerHTML = `<i class="${iconClass}" aria-hidden="true"></i> ${theme === 'dark' ? 'Light Mode' : 'Dark Mode'}`;
+                themeToggleMobile.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+            }
         }
     };
 
     // Read stored theme or system preference
     const savedTheme = localStorage.getItem('theme');
     const initialTheme = savedTheme || 'dark';
-    setTheme(initialTheme);
+    setTheme(initialTheme, false);
 
-    // Click Handlers for Theme Toggle Buttons
+    // Smooth Click Handlers for Theme Toggle Buttons
+    const handleThemeToggleClick = (e) => {
+        if (e) e.preventDefault();
+        if (isThemeTransitioning) return;
+        isThemeTransitioning = true;
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        setTheme(currentTheme === 'dark' ? 'light' : 'dark', true);
+    };
+
     if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
+        themeToggle.addEventListener('click', handleThemeToggleClick);
     }
 
     if (themeToggleMobile) {
-        themeToggleMobile.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
+        themeToggleMobile.addEventListener('click', handleThemeToggleClick);
     }
 
     // ---------------------------------------------------------
