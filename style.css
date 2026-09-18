@@ -2618,4 +2618,103 @@ html[data-theme="dark"] .skeleton-box {
 
 [data-theme="light"] .highlight-stat-card:hover .stat-highlight-label {
     color: var(--clr-gold-dark);
-}
+}
+
+/* ==========================================================================
+   Profile Tool Pill Badges
+   ========================================================================== */
+
+.profile-tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* Base badge */
+.tool-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 13px;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    border: 1px solid rgba(217, 164, 65, 0.3);
+    background: rgba(217, 164, 65, 0.08);
+    color: var(--clr-gold-primary);
+    cursor: default;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.tool-pill:hover {
+    background: rgba(217, 164, 65, 0.18);
+    border-color: rgba(217, 164, 65, 0.65);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(217, 164, 65, 0.2);
+}
+
+/* ── Premium Pro badge – rich gold gradient ── */
+.tool-pill--premium {
+    background: linear-gradient(135deg, rgba(217, 164, 65, 0.22) 0%, rgba(242, 193, 78, 0.28) 100%);
+    border-color: rgba(242, 193, 78, 0.6);
+    color: #F2C14E;
+    box-shadow: 0 0 10px rgba(242, 193, 78, 0.15);
+    animation: premiumPulse 3.5s ease-in-out infinite;
+}
+
+.tool-pill--premium:hover {
+    background: linear-gradient(135deg, rgba(217, 164, 65, 0.38) 0%, rgba(242, 193, 78, 0.44) 100%);
+    border-color: #F2C14E;
+    box-shadow: 0 0 20px rgba(242, 193, 78, 0.4), 0 4px 14px rgba(217, 164, 65, 0.3);
+}
+
+@keyframes premiumPulse {
+    0%, 100% { box-shadow: 0 0 8px rgba(242, 193, 78, 0.15); }
+    50%       { box-shadow: 0 0 18px rgba(242, 193, 78, 0.4), 0 0 6px rgba(217, 164, 65, 0.35); }
+}
+
+/* ── AI badge – electric violet / indigo shimmer ── */
+.tool-pill--ai {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.18) 0%, rgba(99, 102, 241, 0.22) 100%);
+    border-color: rgba(139, 92, 246, 0.5);
+    color: #c4b5fd;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.15);
+    animation: aiShimmer 3.5s ease-in-out infinite;
+    background-size: 200% 200%;
+}
+
+.tool-pill--ai:hover {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.32) 0%, rgba(99, 102, 241, 0.38) 100%);
+    border-color: rgba(167, 139, 250, 0.8);
+    color: #ddd6fe;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 4px 14px rgba(99, 102, 241, 0.3);
+}
+
+@keyframes aiShimmer {
+    0%, 100% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.15); }
+    50%       { box-shadow: 0 0 18px rgba(139, 92, 246, 0.4), 0 0 6px rgba(99, 102, 241, 0.35); }
+}
+
+/* Light theme adjustments for badges */
+[data-theme="light"] .tool-pill {
+    background: rgba(217, 164, 65, 0.1);
+    border-color: rgba(192, 141, 44, 0.4);
+    color: var(--clr-gold-dark);
+}
+
+[data-theme="light"] .tool-pill--premium {
+    background: linear-gradient(135deg, rgba(217, 164, 65, 0.15) 0%, rgba(242, 193, 78, 0.22) 100%);
+    border-color: rgba(192, 141, 44, 0.6);
+    color: var(--clr-gold-dark);
+}
+
+[data-theme="light"] .tool-pill--ai {
+    background: linear-gradient(135deg, rgba(109, 40, 217, 0.1) 0%, rgba(79, 70, 229, 0.14) 100%);
+    border-color: rgba(109, 40, 217, 0.4);
+    color: #7c3aed;
+}
+
