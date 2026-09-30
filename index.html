@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0D0C0A">
     <title>BellaMo | Premium Creative Production Duo & Social Media Growth Strategy</title>
 
     <!-- SEO & Social Sharing Tags -->
@@ -12,32 +13,23 @@
     <meta property="og:title" content="BellaMo | Premium Creative Production Duo & Social Media Growth Strategy">
     <meta property="og:description"
         content="Event promotion, short-form video production, and social media growth strategy by Blen Haile and Mohammed Alewi.">
-    <meta property="og:image" content="logo.png">
+    <meta property="og:image" content="https://bellamo.vercel.app/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- Favicon -->
-    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="icon" href="logo.webp" type="image/webp">
 
-    <!-- Google Fonts: Elegant Didone Serif (Playfair Display) + Clean Modern Sans-Serif (Manrope) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
-        rel="stylesheet">
+    <!-- Preload Hero LCP Candidate -->
+    <link rel="preload" as="image" href="bell.webp" type="image/webp" fetchpriority="high">
 
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+    <!-- Preload Self-Hosted Fonts for Instant Rendering -->
+    <link rel="preload" href="assets/fonts/manrope-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/playfair-display-600.woff2" as="font" type="font/woff2" crossorigin>
 
-    <!-- EmailJS SDK Integration -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function () {
-            emailjs.init("908ARPC--bLL0_hxk"); // Public Key
-        })();
-    </script>
-
-    <!-- Theme: apply before CSS renders to prevent flash of light theme -->
+    <!-- Theme: Apply immediately before CSS render to prevent light theme flash -->
     <script>
         (function () {
             var t = localStorage.getItem('theme') || 'dark';
@@ -45,35 +37,69 @@
         })();
     </script>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=1.1">
+    <!-- Critical Above-The-Fold CSS Inlined for Instant Rendering -->
+    <style>
+        :root {
+            --clr-bg: #F7F5F1;
+            --clr-ink: #121212;
+            --clr-ink-muted: #4A4A4A;
+            --clr-gold-primary: #D9A441;
+            --clr-gold-light: #F2C14E;
+            --clr-gold-dark: #C08D2C;
+            --clr-glass-surface: rgba(255, 255, 255, 0.45);
+            --clr-glass-solid: #FFFFFF;
+            --clr-glass-border: rgba(18, 18, 18, 0.06);
+            --clr-gold-border: rgba(217, 164, 65, 0.25);
+            --font-serif: 'Playfair Display', 'Nyala', 'Abyssinica SIL', Georgia, Didone, serif;
+            --font-sans: 'Manrope', 'Noto Sans Ethiopic', 'Nyala', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --container-width: 1200px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 24px;
+            --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: 0.2s ease;
+        }
+        [data-theme="dark"] {
+            --clr-bg: #0D0C0A;
+            --clr-ink: #F7F5F1;
+            --clr-ink-muted: #A8A6A1;
+            --clr-glass-surface: rgba(22, 20, 16, 0.65);
+            --clr-glass-solid: #161410;
+            --clr-glass-border: rgba(255, 255, 255, 0.08);
+            --clr-gold-border: rgba(217, 164, 65, 0.35);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--clr-bg);
+            color: var(--clr-ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { width: 90%; max-width: var(--container-width); margin: 0 auto; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; padding: 1rem 0; pointer-events: none; }
+        .nav-container { pointer-events: all; display: flex; justify-content: space-between; align-items: center; width: 92%; max-width: 1120px; margin: 0.75rem auto 0; padding: 0.55rem 0.6rem 0.55rem 1.1rem; border-radius: 999px; }
+        .navbar.scrolled .nav-container { background: rgba(18, 16, 11, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(217, 164, 65, 0.2); }
+        .hero-team-section { min-height: 100vh; display: flex; align-items: center; padding-top: 140px; padding-bottom: 80px; position: relative; overflow: hidden; }
+        .hero-brand-title { font-family: var(--font-serif); font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 700; color: #D9A441; text-align: center; line-height: 0.95; }
+        .hero-tagline { font-family: var(--font-serif); font-size: clamp(1.1rem, 2.5vw, 1.6rem); color: var(--clr-ink); text-align: center; margin: 1.2rem auto 0; }
+        .team-cards-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .team-profile-card { padding: 2.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; border-radius: 20px; }
+        .avatar-block.image-avatar { width: clamp(100px, 12vw, 130px); height: clamp(100px, 12vw, 130px); border-radius: 50%; border: 3px solid var(--clr-gold-primary); object-fit: cover; }
+    </style>
 
-    <!-- Scripts -->
-    <script src="script.js?v=1.1" defer></script>
+    <!-- Asynchronously Loaded Full Stylesheet -->
+    <link rel="preload" href="style.css?v=2.0" as="style">
+    <link rel="stylesheet" href="style.css?v=2.0" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="style.css?v=2.0"></noscript>
+
+    <!-- Scripts (All Non-Blocking / Deferred) -->
+    <script src="script.js?v=2.0" defer></script>
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 </head>
 
 <body>
-
-    <!-- Skeleton Loading Screen -->
-    <div id="skeleton-loader" class="skeleton-loader">
-        <div class="skeleton-nav">
-            <div class="skeleton-box skeleton-nav-logo"></div>
-            <div class="skeleton-nav-links">
-                <div class="skeleton-box skeleton-nav-link"></div>
-                <div class="skeleton-box skeleton-nav-link"></div>
-                <div class="skeleton-box skeleton-nav-link"></div>
-                <div class="skeleton-box skeleton-nav-link"></div>
-            </div>
-        </div>
-        <div class="skeleton-hero">
-            <div class="skeleton-box skeleton-title-large"></div>
-            <div class="skeleton-box skeleton-subtitle-large"></div>
-        </div>
-        <div class="skeleton-cards">
-            <div class="skeleton-box skeleton-card-large"></div>
-            <div class="skeleton-box skeleton-card-large"></div>
-        </div>
-    </div>
 
     <!-- Skip Link for Accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -83,7 +109,7 @@
         <div class="nav-container">
             <a href="#team" class="nav-brand" aria-label="BellaMo Home">
                 <div class="nav-logo-circle">
-                    <img src="logo.png" alt="BellaMo Monogram Logo">
+                    <img src="logo.webp" alt="BellaMo Monogram Logo" width="34" height="34" decoding="async">
                 </div>
                 <span class="nav-wordmark nav-wordmark-gold">BellaMo</span>
             </a>
@@ -147,7 +173,7 @@
                         <div class="profile-avatar-container">
                             <a href="https://bellanawit.vercel.app/" target="_blank" rel="noopener noreferrer"
                                 aria-label="Visit Blen Haile's portfolio">
-                                <img src="bell.webp" alt="Blen Haile" class="avatar-block image-avatar">
+                                <img src="bell.webp" alt="Blen Haile" class="avatar-block image-avatar" width="130" height="130" fetchpriority="high" decoding="async">
                             </a>
                         </div>
                         <div class="profile-meta-info">
@@ -177,7 +203,7 @@
                         <div class="profile-avatar-container">
                             <a href="https://mohsquare1.netlify.app/" target="_blank" rel="noopener noreferrer"
                                 aria-label="Visit Mohammed Alewi's portfolio">
-                                <img src="moh.webp" alt="Mohammed Alewi" class="avatar-block image-avatar">
+                                <img src="moh.webp" alt="Mohammed Alewi" class="avatar-block image-avatar" width="130" height="130" fetchpriority="high" decoding="async">
                             </a>
                         </div>
                         <div class="profile-meta-info">
@@ -280,65 +306,61 @@
 
                 <!-- Showcase Grid -->
                 <div class="portfolio-grid fade-up-element" id="portfolio-grid">
-                    <!-- New Video: 7669843188659588370 (Blen - Stellar Printing PLC) -->
+                    <!-- 1. 7669843188659588370 (Blen - Stellar Printing PLC) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_7669843188659588370.jpg"
-                                alt="Stellar Printing PLC — our Steller exercise book types" class="video-thumb"
-                                loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_7669843188659588370-400w.webp 400w, assets/thumbnails/thumb_7669843188659588370.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_7669843188659588370.jpg" alt="Stellar Printing PLC — our Steller exercise book types" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-book-open" aria-hidden="true"></i> Stellar
-                                Printing</span>
+                            <span class="category-tag"><i class="ph ph-book-open" aria-hidden="true"></i> Stellar Printing</span>
                             <h4>Our Steller Exercise Book Types</h4>
-                            <p>our Steller exercise book types #exercisebook #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 #መርካቶ
-                                #creatorsearchinsights #fyp</p>
-                            <a href="https://www.tiktok.com/@stellarprintingplc/video/7669843188659588370"
-                                target="_blank" rel="noopener noreferrer" class="watch-link">
+                            <p>our Steller exercise book types #exercisebook #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 <span lang="am">#መርካቶ</span> #creatorsearchinsights #fyp</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://www.tiktok.com/@stellarprintingplc/video/7669843188659588370" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- New Video: 7668623305347239186 (Blen - Stellar Printing PLC) -->
+                    <!-- 2. 7668623305347239186 (Blen - Stellar Printing PLC) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_7668623305347239186.jpg"
-                                alt="Stellar Printing PLC — Steller exercise book manufacturing process"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_7668623305347239186-400w.webp 400w, assets/thumbnails/thumb_7668623305347239186.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_7668623305347239186.jpg" alt="Stellar Printing PLC — Steller exercise book manufacturing process" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-book-open" aria-hidden="true"></i> Stellar
-                                Printing</span>
+                            <span class="category-tag"><i class="ph ph-book-open" aria-hidden="true"></i> Stellar Printing</span>
                             <h4>Steller Exercise Book Manufacturing Process</h4>
-                            <p>Steller exercise book manufacturing process #exercisebook
-                                #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 #መርካቶ #creatorsearchinsights #fyp</p>
-                            <a href="https://www.tiktok.com/@stellarprintingplc/video/7668623305347239186"
-                                target="_blank" rel="noopener noreferrer" class="watch-link">
+                            <p>Steller exercise book manufacturing process #exercisebook #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 <span lang="am">#መርካቶ</span> #creatorsearchinsights #fyp</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://www.tiktok.com/@stellarprintingplc/video/7668623305347239186" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- ZSqgK3QcS (Almi Products) -->
+                    <!-- 3. ZSqgK3QcS (Almi Products) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSqgK3QcS.jpg" alt="Almi Products Branch Locations"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSqgK3QcS-400w.webp 400w, assets/thumbnails/thumb_ZSqgK3QcS.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSqgK3QcS.jpg" alt="Almi Products Branch Locations" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-leaf" aria-hidden="true"></i> Almi
-                                Products</span>
+                            <span class="category-tag"><i class="ph ph-leaf" aria-hidden="true"></i> Almi Products</span>
                             <h4>Branch Locations &amp; Availability</h4>
-                            <p>አብዛኛውን ጊዜ ከምንጠየቀው ጥያቄ ውስጥ የአልሚ ምርቶች ብራንቾች የት ነው የሚገኙት ነው:: ✅ በአትላስ ቺቺኒያ መስመር ባርኔሮ ፍለፊት
-                                ✅በሜክሲኮ ቻምበር ህንፃ ስር ✅ በወሰን አቤም ሆቴል አካባቢ ✅በጎሮ ጎሮ ትምህርት ቤት ፍለፊት ✅ በሀያት ወደ ጣፋው መሄጃ ✅በለቡ ለቡ
-                                መድኃኔዓለም አካባቢ ✅በተጨማሪ በሱሉልታ ሚዛን ምርቶቻችንን ማግኘት ትችላላችሁ:: 🟢⚪አልሚ ምርቶች የጥራት ልህቀት!⚪🟢 #almikolo
-                                #baltena #berbere #shero #habeshafood</p>
-                            <a href="https://vt.tiktok.com/ZSqgK3QcS/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p lang="am">አብዛኛውን ጊዜ ከምንጠየቀው ጥያቄ ውስጥ የአልሚ ምርቶች ብራንቾች የት ነው የሚገኙት ነው:: ✅ በአትላስ ቺቺኒያ መስመር ባርኔሮ ፍለፊት ✅በሜክሲኮ ቻምበር ህንፃ ስር ✅ በወሰን አቤም ሆቴል አካባቢ ✅በጎሮ ጎሮ ትምህርት ቤት ፍለፊት ✅ በሀያት ወደ ጣፋው መሄጃ ✅በለቡ ለቡ መድኃኔዓለም አካባቢ ✅በተጨማሪ በሱሉልታ ሚዛን ምርቶቻችንን ማግኘት ትችላላችሁ:: 🟢⚪አልሚ ምርቶች የጥራት ልህቀት!⚪🟢 #almikolo #baltena #berbere #shero #habeshafood</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSqgK3QcS/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -347,85 +369,78 @@
                     <!-- 4. ZSxNFcpvU (Almi Products - Export Standard Teff Flour) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_16.jpg" alt="Export Standard Teff Flour"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_16-400w.webp 400w, assets/thumbnails/thumb_16.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_16.jpg" alt="Export Standard Teff Flour" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-leaf" aria-hidden="true"></i> Almi
-                                Products</span>
+                            <span class="category-tag"><i class="ph ph-leaf" aria-hidden="true"></i> Almi Products</span>
                             <h4>Export Standard Teff Flour</h4>
-                            <p>አልሚ ምርቶች በኤክስፖርት ስታንዳርድ የሚመረቱት የጤፍ ዱቄት፤ ቆሎ፤ ዳቦ ቆሎ፤ ሽሮ፤ በርበሬ፤ ቆጮ እንዲሁም 45 በላይ የተለያዩ ምርቶችን
-                                አምርቶ በሀገር ውስጥ ገበያ በተጨማሪም በአሜሪካ እንዲሁም በካናዳ በደምበኞቻችን ተወዳጅነትን አትርፏል:: በተጨማሪም በኢሮፕ, በአውስትራሊ
-                                እንዲሁም በተለያዩ የአለም ሀገራት ተደራሽነታችንን ለማስፋት ዝግጅታችንን አጠናቀን ጨርሰናል በመሆኑም አከፋፋዮች እንዲሁም አስመጭዎች ከኛ
-                                ጋር አብራችሁን እንድትሰሩ ጥሪያችን ነው:: WhatsApp 👇 +251 97 947 5653 Email 👇
-                                almiproducts1@gmail.com Abaystrading@gmail.com #EthiopianDiaspora #ethiopianspice
-                                #Europe #Australia #wholesaler</p>
-                            <a href="https://vt.tiktok.com/ZSxNFcpvU/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p lang="am">አልሚ ምርቶች በኤክስፖርት ስታንዳርድ የሚመረቱት የጤፍ ዱቄት፤ ቆሎ፤ ዳቦ ቆሎ፤ ሽሮ፤ በርበሬ፤ ቆጮ እንዲሁም 45 በላይ የተለያዩ ምርቶችን አምርቶ በሀገር ውስጥ ገበያ በተጨማሪም በአሜሪካ እንዲሁም በካናዳ በደምበኞቻችን ተወዳጅነትን አትርፏል:: በተጨማሪም በኢሮፕ, በአውስትራሊ እንዲሁም በተለያዩ የአለም ሀገራት ተደራሽነታችንን ለማስፋት ዝግጅታችንን አጠናቀን ጨርሰናል በመሆኑም አከፋፋዮች እንዲሁም አስመጭዎች ከኛ ጋር አብራችሁን እንድትሰሩ ጥሪያችን ነው:: WhatsApp 👇 +251 97 947 5653 Email 👇 almiproducts1@gmail.com Abaystrading@gmail.com #EthiopianDiaspora #ethiopianspice #Europe #Australia #wholesaler</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSxNFcpvU/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- ZSqgEFbsk (Stellar printing plc) -->
+                    <!-- 5. ZSqgEFbsk (Stellar printing plc) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSqgEFbsk.jpg" alt="Steller ደብተር ማምረቻ ድርጅት"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSqgEFbsk-400w.webp 400w, assets/thumbnails/thumb_ZSqgEFbsk.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSqgEFbsk.jpg" alt="Steller ደብተር ማምረቻ ድርጅት" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-book-open" aria-hidden="true"></i> Stellar
-                                Printing</span>
+                            <span class="category-tag"><i class="ph ph-book-open" aria-hidden="true"></i> Stellar Printing</span>
                             <h4>Steller ደብተር ማምረቻ ድርጅት</h4>
-                            <p>Steller ደብተረ ማምረቻ ድርጅት። ነጋዴዋች በአሪፉ ዋጋ አቅርበንላአቹሀል።#exercisebook
-                                #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 #መርካቶ #creatorsearchinsights #fyp</p>
-                            <a href="https://vt.tiktok.com/ZSqgEFbsk/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p lang="am">Steller ደብተረ ማምረቻ ድርጅት። ነጋዴዋች በአሪፉ ዋጋ አቅርበንላአቹሀል።#exercisebook #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 #መርካቶ #creatorsearchinsights #fyp</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSqgEFbsk/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- ZSqgE2RAG (serahub) -->
+                    <!-- 6. ZSqgE2RAG (serahub) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSqgE2RAG.jpg" alt="Hiring Skills" class="video-thumb"
-                                loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSqgE2RAG-400w.webp 400w, assets/thumbnails/thumb_ZSqgE2RAG.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSqgE2RAG.jpg" alt="Hiring Skills" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-briefcase" aria-hidden="true"></i> Career &amp;
-                                Freelance</span>
+                            <span class="category-tag"><i class="ph ph-briefcase" aria-hidden="true"></i> Career &amp; Freelance</span>
                             <h4>Hiring Skills &amp; Freelance Opportunities</h4>
-                            <p>Hiring Skills #serahub #workinethiopia #jobopportunity #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹
-                                #freelance</p>
-                            <a href="https://vt.tiktok.com/ZSqgE2RAG/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>Hiring Skills #serahub #workinethiopia #jobopportunity #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 #freelance</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSqgE2RAG/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- ZSqgE677N (madiga031) -->
+                    <!-- 7. ZSqgE677N (madiga031) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSqgE677N.jpg"
-                                alt="Eat Your Protein & Grilled Chicken Salad" class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSqgE677N-400w.webp 400w, assets/thumbnails/thumb_ZSqgE677N.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSqgE677N.jpg" alt="Eat Your Protein &amp; Grilled Chicken Salad" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-fork-knife" aria-hidden="true"></i> Food &amp;
-                                Lifestyle</span>
+                            <span class="category-tag"><i class="ph ph-fork-knife" aria-hidden="true"></i> Food &amp; Lifestyle</span>
                             <h4>Eat Your Protein &amp; Grilled Chicken Salad</h4>
-                            <p>Eat your protein, &amp; Grilled chicken salad 🥗 Eat Your Protein: Grilled chicken,
-                                spinach, boiled egg, avocado &amp; toast. 🥗 Grilled Chicken Salad: Mixed salad, grilled
-                                chicken, boiled egg, avocado, olive oil &amp; vinegar. Healthy, fresh, and packed with
-                                protein. 💪✨ #EatYourProtein #GrilledChicken #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹
-                                #creatorsearchinsights #fyp</p>
-                            <a href="https://vt.tiktok.com/ZSqgE677N/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>Eat your protein, &amp; Grilled chicken salad 🥗 Eat Your Protein: Grilled chicken, spinach, boiled egg, avocado &amp; toast. 🥗 Grilled Chicken Salad: Mixed salad, grilled chicken, boiled egg, avocado, olive oil &amp; vinegar. Healthy, fresh, and packed with protein. 💪✨ #EatYourProtein #GrilledChicken #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 #creatorsearchinsights #fyp</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSqgE677N/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -434,274 +449,258 @@
                     <!-- 8. ZSXDvSJfA (Blen - Madiga Cafe) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSXDvSJfA.jpg" alt="Madiga Cafe - Healthy Food Promo"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSXDvSJfA-400w.webp 400w, assets/thumbnails/thumb_ZSXDvSJfA.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSXDvSJfA.jpg" alt="Madiga Cafe - Healthy Food Promo" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-fork-knife" aria-hidden="true"></i> Food &amp;
-                                Lifestyle</span>
+                            <span class="category-tag"><i class="ph ph-fork-knife" aria-hidden="true"></i> Food &amp; Lifestyle</span>
                             <h4>Madiga Cafe Healthy Food Promo</h4>
-                            <p>🌿 Eat Healthy. Feel Great. Relax in Comfort. ☕ Welcome to Madiga Cafe your cozy, safe,
-                                and welcoming spot to enjoy fresh, nutritious meals made with quality ingredients.
-                                Whether you’re catching up with friends, working remotely, or simply treating yourself,
-                                we’ve created the perfect atmosphere for every moment. 📍 Branch 1: Bole Japan, next to
-                                Igloo Ice Cream 📍 Branch 2: Bole Atlas, Grace Plaza Visit Madiga Café today and
-                                discover healthy food in a warm and relaxing environment. We can’t wait to serve you!
-                                🍋‍🟩 #MarigaCafe #HealthyMeals #EatFresh #HealthyLifestyle #creatorsearchinsights</p>
-                            <a href="https://vt.tiktok.com/ZSXDvSJfA/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>🌿 Eat Healthy. Feel Great. Relax in Comfort. ☕ Welcome to Madiga Cafe your cozy, safe, and welcoming spot to enjoy fresh, nutritious meals made with quality ingredients. Whether you’re catching up with friends, working remotely, or simply treating yourself, we’ve created the perfect atmosphere for every moment. 📍 Branch 1: Bole Japan, next to Igloo Ice Cream 📍 Branch 2: Bole Atlas, Grace Plaza Visit Madiga Café today and discover healthy food in a warm and relaxing environment. We can’t wait to serve you! 🍋‍🟩 #MarigaCafe #HealthyMeals #EatFresh #HealthyLifestyle #creatorsearchinsights</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSXDvSJfA/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- ZSqgEy6gj (kuncho) -->
+                    <!-- 9. ZSqgEy6gj (kuncho) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSqgEy6gj.jpg" alt="Little looks, big personalities"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSqgEy6gj-400w.webp 400w, assets/thumbnails/thumb_ZSqgEy6gj.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSqgEy6gj.jpg" alt="Little looks, big personalities" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-t-shirt" aria-hidden="true"></i> Kids &amp; Teen
-                                Fashion</span>
+                            <span class="category-tag"><i class="ph ph-t-shirt" aria-hidden="true"></i> Kids &amp; Teen Fashion</span>
                             <h4>Little Looks, Big Personalities</h4>
-                            <p>Little looks, big personalities. ✨👕 Discover fun, stylish outfits made for every kid and
-                                teen to express themselves. 💛 #creatorsearchinsights #Kuncho #KidsFashion #TeenFashion
-                                #EthiopianFashion</p>
-                            <a href="https://vt.tiktok.com/ZSqgEy6gj/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>Little looks, big personalities. ✨👕 Discover fun, stylish outfits made for every kid and teen to express themselves. 💛 #creatorsearchinsights #Kuncho #KidsFashion #TeenFashion #EthiopianFashion</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSqgEy6gj/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- ZSqgEfSC7 (kuncho) -->
+                    <!-- 10. ZSqgEfSC7 (kuncho) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSqgEfSC7.jpg" alt="Back to School Style"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSqgEfSC7-400w.webp 400w, assets/thumbnails/thumb_ZSqgEfSC7.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSqgEfSC7.jpg" alt="Back to School Style" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-backpack" aria-hidden="true"></i> Back to
-                                School</span>
+                            <span class="category-tag"><i class="ph ph-backpack" aria-hidden="true"></i> Back to School</span>
                             <h4>Back to School Style &amp; Apparel</h4>
-                            <p>🎒✨ New school year, new style! Get ready for school with Kuncho 💛📚 #Kuncho
-                                #BackToSchool #SchoolReady #creatorsearchinsights #creatorsearchinsughts</p>
-                            <a href="https://vt.tiktok.com/ZSqgEfSC7/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>🎒✨ New school year, new style! Get ready for school with Kuncho 💛📚 #Kuncho #BackToSchool #SchoolReady #creatorsearchinsights #creatorsearchinsughts</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSqgEfSC7/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- ZSqgEFh9d (sheva toys) -->
+                    <!-- 11. ZSqgEFh9d (sheva toys) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSqgEFh9d.jpg" alt="Coming soon sheva toys"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSqgEFh9d-400w.webp 400w, assets/thumbnails/thumb_ZSqgEFh9d.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSqgEFh9d.jpg" alt="Coming soon sheva toys" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-sparkles" aria-hidden="true"></i> Sheva
-                                Toys</span>
+                            <span class="category-tag"><i class="ph ph-sparkles" aria-hidden="true"></i> Sheva Toys</span>
                             <h4>Coming Soon — New Toy Releases</h4>
-                            <p>Coming soon 🤩 sheva toys 🧸 stay tuned #comingsoon #toystore #kids #bole
-                                #creatorsearchinsights</p>
-                            <a href="https://vt.tiktok.com/ZSqgEFh9d/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>Coming soon 🤩 sheva toys 🧸 stay tuned #comingsoon #toystore #kids #bole #creatorsearchinsights</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSqgEFh9d/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- ZSqgEvmax (Perfect electronics) -->
+                    <!-- 12. ZSqgEvmax (Perfect electronics) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSqgEvmax.jpg" alt="ልብሰ ማጠብያ (cloth washing machine)"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSqgEvmax-400w.webp 400w, assets/thumbnails/thumb_ZSqgEvmax.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSqgEvmax.jpg" alt="ልብሰ ማጠብያ (cloth washing machine)" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-sparkles" aria-hidden="true"></i> Perfect
-                                Electronics</span>
+                            <span class="category-tag"><i class="ph ph-sparkles" aria-hidden="true"></i> Perfect Electronics</span>
                             <h4>ልብሰ ማጠብያ (Cloth Washing Machine)</h4>
-                            <p>ልብሰ ማጠብያ (cloth washing machine)#washing machine #electronics #መርካቶ #machine
-                                #creatorsearchinsights</p>
-                            <a href="https://vt.tiktok.com/ZSqgEvmax/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p lang="am">ልብሰ ማጠብያ (cloth washing machine)#washing machine #electronics #መርካቶ #machine #creatorsearchinsights</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSqgEvmax/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- 7. ZSCdRLjGx (Blen - Event Visual Campaign) -->
+                    <!-- 13. ZSCdRLjGx (Blen - Event Visual Campaign) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSCdRLjGx.jpg" alt="Event Visual Campaign"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSCdRLjGx-400w.webp 400w, assets/thumbnails/thumb_ZSCdRLjGx.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSCdRLjGx.jpg" alt="Event Visual Campaign" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-sparkles" aria-hidden="true"></i> Event
-                                Highlights</span>
+                            <span class="category-tag"><i class="ph ph-sparkles" aria-hidden="true"></i> Event Highlights</span>
                             <h4>Event Visual Campaign</h4>
-                            <p>Sheva toys 🧸 for your kids and children toys bicycles dolls puzzles and etc #kids #gift
-                                #toy #children ##creatorsearchinsights</p>
-                            <a href="https://vt.tiktok.com/ZSCdRLjGx/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>Sheva toys 🧸 for your kids and children toys bicycles dolls puzzles and etc #kids #gift #toy #children ##creatorsearchinsights</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSCdRLjGx/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- 8. ZSxN1ojmp (Blen - Campus & Career Selection Advice) -->
+                    <!-- 14. ZSxN1ojmp (Blen - Campus & Career Selection Advice) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_new_2.jpg" alt="Campus & Career Selection Advice"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_new_2-400w.webp 400w, assets/thumbnails/thumb_new_2.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_new_2.jpg" alt="Campus &amp; Career Selection Advice" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph-fill ph-fire" aria-hidden="true"></i> Most
-                                Viewed</span>
+                            <span class="category-tag"><i class="ph-fill ph-fire" aria-hidden="true"></i> Most Viewed</span>
                             <h4>Campus &amp; Career Selection Advice</h4>
-                            <p>Don’t miss this while choosing your department 📌 #fyp #viral #africa #opportunity
-                                #information @Nhatty 🦈</p>
-                            <a href="https://vt.tiktok.com/ZSxN1ojmp/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>Don’t miss this while choosing your department 📌 #fyp #viral #africa #opportunity #information @Nhatty 🦈</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSxN1ojmp/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- 9. ZSH7xSt37 (Blen - AUTV Exclusive Correspondent) -->
+                    <!-- 15. ZSH7xSt37 (Blen - AUTV Exclusive Correspondent) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_9.jpg" alt="Africa Unite TV Live Coverage"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_9-400w.webp 400w, assets/thumbnails/thumb_9.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_9.jpg" alt="Africa Unite TV Live Coverage" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-video-camera" aria-hidden="true"></i> Press &amp;
-                                Media</span>
+                            <span class="category-tag"><i class="ph ph-video-camera" aria-hidden="true"></i> Press &amp; Media</span>
                             <h4>Africa Unite TV Live Coverage</h4>
-                            <p>EXCLUSIVE: Meet Africa Unite TV&#x27;s Rising Star Correspondent Addis Ababa, Ethiopia -
-                                Africa Unite TV is thrilled to introduce its latest correspondent, the talented and
-                                dynamic Ms. Blen Haile Agezwe. This 20-year-old multi-talented journalist is set to
-                                bring you the latest news and features from Ethiopia and the Horn of Africa. Based in
-                                Addis Ababa, Africa&#x27;s political capital, Blen is currently pursuing her degree in
-                                Political Science and International Relations at Addis Ababa University. Her academic
-                                background and passion for storytelling make her a powerhouse of insightful reporting.
-                                &quot;Keep AUTV connecting the continent,&quot; Blen says, excited to share the untold
-                                stories of Africa with the world. Stay tuned for Blen&#x27;s captivating reports and
-                                features from Ethiopia and beyond!</p>
-                            <a href="https://vt.tiktok.com/ZSH7xSt37/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>EXCLUSIVE: Meet Africa Unite TV's Rising Star Correspondent Addis Ababa, Ethiopia - Africa Unite TV is thrilled to introduce its latest correspondent, the talented and dynamic Ms. Blen Haile Agezwe. This 20-year-old multi-talented journalist is set to bring you the latest news and features from Ethiopia and the Horn of Africa. Based in Addis Ababa, Africa's political capital, Blen is currently pursuing her degree in Political Science and International Relations at Addis Ababa University. Her academic background and passion for storytelling make her a powerhouse of insightful reporting. "Keep AUTV connecting the continent," Blen says, excited to share the untold stories of Africa with the world. Stay tuned for Blen's captivating reports and features from Ethiopia and beyond!</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSH7xSt37/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-
-                    <!-- 11. ZSCks3jRY (Blen - Lifestyle Reel) -->
+                    <!-- 16. ZSCks3jRY (Blen - Lifestyle Reel) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="blen">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSCks3jRY.jpg" alt="Lifestyle Reel" class="video-thumb"
-                                loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSCks3jRY-400w.webp 400w, assets/thumbnails/thumb_ZSCks3jRY.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSCks3jRY.jpg" alt="Lifestyle Reel" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-sparkles" aria-hidden="true"></i> Sheva
-                                Toys</span>
+                            <span class="category-tag"><i class="ph ph-sparkles" aria-hidden="true"></i> Sheva Toys</span>
                             <h4>Check this out!!</h4>
-                            <p>If you are around bole atlas dont forget to check out sheva toys
-                                🧸🤩#fyp#creatorsearchinsights #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 #trend #toys</p>
-                            <a href="https://vt.tiktok.com/ZSCks3jRY/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>If you are around bole atlas dont forget to check out sheva toys 🧸🤩#fyp#creatorsearchinsights #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 #trend #toys</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSCks3jRY/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- ZSqgEYyRM (Atlantic Trading plc) -->
+                    <!-- 17. ZSqgEYyRM (Atlantic Trading plc) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="mohammed">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSqgEYyRM.jpg" alt="Strong new chairs (አትላንቲክ ይለያል)"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSqgEYyRM-400w.webp 400w, assets/thumbnails/thumb_ZSqgEYyRM.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSqgEYyRM.jpg" alt="Strong new chairs (አትላንቲክ ይለያል)" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-buildings" aria-hidden="true"></i> Atlantic
-                                Trading</span>
+                            <span class="category-tag"><i class="ph ph-buildings" aria-hidden="true"></i> Atlantic Trading</span>
                             <h4>Strong New Chairs (አትላንቲክ ይለያል)</h4>
-                            <p>Strong new chairs (አትላንቲክ ይለያል) #chair #fyp #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹
-                                #creatorsearchinsights #መርካቶ</p>
-                            <a href="https://vt.tiktok.com/ZSqgEYyRM/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>Strong new chairs (<span lang="am">አትላንቲክ ይለያል</span>) #chair #fyp #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 #creatorsearchinsights <span lang="am">#መርካቶ</span></p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSqgEYyRM/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
-                    <!-- 9. Moh New Video (Atlantic Trading) -->
+
+                    <!-- 18. Moh New Video (Atlantic Trading) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="mohammed">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_Moh_Atlantic.jpg" alt="Premium Outdoor Set Layout"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_Moh_Atlantic-400w.webp 400w, assets/thumbnails/thumb_Moh_Atlantic.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_Moh_Atlantic.jpg" alt="Premium Outdoor Set Layout" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-buildings" aria-hidden="true"></i> Atlantic
-                                Trading</span>
+                            <span class="category-tag"><i class="ph ph-buildings" aria-hidden="true"></i> Atlantic Trading</span>
                             <h4>Premium Outdoor Set Layout</h4>
-                            <p>3x3 ባለ ማብራት ጥላ ⛱️ 3x3 light 💡 umbrella #መርካቶ #ጥላ #umbrella #cafe #creatorsearchinsights
-                            </p>
-                            <a href="https://www.tiktok.com/@atlantic.trading/video/7650555374302432520?_r=1&_t=ZS-97Qz4pPn6Bg"
-                                target="_blank" rel="noopener noreferrer" class="watch-link">
+                            <p lang="am">3x3 ባለ ማብራት ጥላ ⛱️ 3x3 light 💡 umbrella #መርካቶ #ጥላ #umbrella #cafe #creatorsearchinsights</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://www.tiktok.com/@atlantic.trading/video/7650555374302432520?_r=1&_t=ZS-97Qz4pPn6Bg" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- ZSqpJLfq2 (yidenkachew.gardening.work) -->
+                    <!-- 19. ZSqpJLfq2 (yidenkachew.gardening.work) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="mohammed">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSqpJLfq2.jpg" alt="Arada Park Gardening Work"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSqpJLfq2-400w.webp 400w, assets/thumbnails/thumb_ZSqpJLfq2.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSqpJLfq2.jpg" alt="Arada Park Gardening Work" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-potted-plant" aria-hidden="true"></i> Landscape
-                                &amp; Park</span>
+                            <span class="category-tag"><i class="ph ph-potted-plant" aria-hidden="true"></i> Landscape &amp; Park</span>
                             <h4>Arada Park Gardening Work</h4>
-                            <p>Arada park gardening work 🪴#park #aradapark #piyassa #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹
-                                #አዲስአበባ💚💛❤ #creatorsearchinsights2025 #cleanwork #greenarea #ሳር #kaluputic #callus
-                                #beauty #friendshippark #CapCut #ghion #garden #creatorsearchinsight</p>
-                            <a href="https://vt.tiktok.com/ZSqpJLfq2/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>Arada park gardening work 🪴#park #aradapark #piyassa #ethiopian_tik_tok🇪🇹🇪🇹🇪🇹🇪🇹 <span lang="am">#አዲስአበባ💚💛❤</span> #creatorsearchinsights2025 #cleanwork #greenarea <span lang="am">#ሳር</span> #kaluputic #callus #beauty #friendshippark #CapCut #ghion #garden #creatorsearchinsight</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSqpJLfq2/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- 10. ZSmYVG9yv (Moh - Highlight Reel) -->
+                    <!-- 20. ZSmYVG9yv (Moh - Highlight Reel) -->
                     <div class="portfolio-card glass-container fade-up-element" data-category="mohammed">
                         <div class="card-media">
-                            <img src="assets/thumbnails/thumb_ZSmYVG9yv.jpg" alt="Luxury Apparel Showcase"
-                                class="video-thumb" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="assets/thumbnails/thumb_ZSmYVG9yv-400w.webp 400w, assets/thumbnails/thumb_ZSmYVG9yv.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 360px">
+                                <img src="assets/thumbnails/thumb_ZSmYVG9yv.jpg" alt="Luxury Apparel Showcase" class="video-thumb" width="400" height="220" loading="lazy" decoding="async">
+                            </picture>
                             <div class="play-btn-circle"><i class="ph ph-play" aria-hidden="true"></i></div>
                         </div>
                         <div class="card-content">
-                            <span class="category-tag"><i class="ph ph-t-shirt" aria-hidden="true"></i> Fashion &amp;
-                                BTS</span>
+                            <span class="category-tag"><i class="ph ph-t-shirt" aria-hidden="true"></i> Fashion &amp; BTS</span>
                             <h4>Luxury Apparel Showcase</h4>
-                            <p>Meet your luxury standard at nur_mens_wear ለበለጠ መረጃ 0911700421 📞091 154 5862
-                                #creatorsearchinsight #fyp #clothes #shoes #viraltiktok #classical #luxury
-                                #fentysuperbrandday#CapCut</p>
-                            <a href="https://vt.tiktok.com/ZSmYVG9yv/" target="_blank" rel="noopener noreferrer"
-                                class="watch-link">
+                            <p>Meet your luxury standard at nur_mens_wear <span lang="am">ለበለጠ መረጃ</span> 0911700421 📞091 154 5862 #creatorsearchinsight #fyp #clothes #shoes #viraltiktok #classical #luxury #fentysuperbrandday#CapCut</p>
+                            <button class="caption-toggle-btn" aria-expanded="false" type="button">more</button>
+                            <a href="https://vt.tiktok.com/ZSmYVG9yv/" target="_blank" rel="noopener noreferrer" class="watch-link">
                                 Watch on TikTok <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -726,11 +725,16 @@
                     <!-- Vault Card 1 -->
                     <div class="vault-card">
                         <div class="vault-badge"><i class="ph-bold ph-warning-circle"></i> CONFIDENTIAL</div>
-                        <div class="vault-video-wrapper">
-                            <video class="main-video" controls preload="metadata" playsinline controlsList="nodownload">
-                                <source src="assets/IMG_3933.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+                        <div class="vault-video-wrapper" data-video-src="assets/IMG_3933.mp4">
+                            <button class="video-facade-btn" aria-label="Play confidential video: Elshaday decor and rental" type="button">
+                                <picture>
+                                    <source srcset="assets/poster_IMG_3933.webp" type="image/webp">
+                                    <img src="assets/poster_IMG_3933.jpg" alt="Elshaday decor and rental preview" class="vault-poster-img" width="720" height="1280" loading="lazy" decoding="async">
+                                </picture>
+                                <div class="facade-play-btn" aria-hidden="true">
+                                    <i class="ph ph-play"></i>
+                                </div>
+                            </button>
                         </div>
                         <div class="vault-content">
                             <h4>Elshaday decor and rental</h4>
@@ -741,11 +745,16 @@
                     <!-- Vault Card 2 -->
                     <div class="vault-card">
                         <div class="vault-badge"><i class="ph-bold ph-warning-circle"></i> CONFIDENTIAL</div>
-                        <div class="vault-video-wrapper">
-                            <video class="main-video" controls preload="metadata" playsinline controlsList="nodownload">
-                                <source src="assets/IMG_4592.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+                        <div class="vault-video-wrapper" data-video-src="assets/IMG_4592.mp4">
+                            <button class="video-facade-btn" aria-label="Play confidential video: Project we did for CBE" type="button">
+                                <picture>
+                                    <source srcset="assets/poster_IMG_4592.webp" type="image/webp">
+                                    <img src="assets/poster_IMG_4592.jpg" alt="Project we did for CBE preview" class="vault-poster-img" width="720" height="1280" loading="lazy" decoding="async">
+                                </picture>
+                                <div class="facade-play-btn" aria-hidden="true">
+                                    <i class="ph ph-play"></i>
+                                </div>
+                            </button>
                         </div>
                         <div class="vault-content">
                             <h4>Project we did for CBE </h4>
@@ -889,7 +898,7 @@
         <div class="container footer-content-grid">
             <div class="footer-brand-column">
                 <a href="#team" class="footer-brand">
-                    <img src="logo.png" alt="BellaMo Monogram Logo" class="footer-logo">
+                    <img src="logo.webp" alt="BellaMo Monogram Logo" class="footer-logo" width="120" height="38" loading="lazy" decoding="async">
                     <span class="footer-wordmark">Bella<span class="footer-wordmark-gold">Mo</span></span>
                 </a>
                 <p class="footer-tagline">Content that moves.</p>
